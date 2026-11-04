@@ -29,9 +29,24 @@
 -- LIMIT 5;
 
 -- HAVING: customers with more than 120 bookings, with name and count, highest first. Expect roughly 150 to 200 rows.
-SELECT c.id, c.name, COUNT(*) AS bookings
-FROM bookings b
-JOIN customers c ON c.id = b.customer_id
+-- SELECT c.id, c.name, COUNT(*) AS bookings
+-- FROM bookings b
+-- JOIN customers c ON c.id = b.customer_id
+-- GROUP BY c.id
+-- HAVING COUNT(*) > 120
+-- ORDER BY bookings DESC;
+
+-- SELECT s.id, s.name, COUNT(*) AS bookings, ROUND(AVG(b.total_cents)/100.0,2) AS booking_value
+-- FROM bookings b
+-- JOIN suppliers s ON s.id = b.supplier_id
+-- WHERE b.status = 'confirmed'
+-- GROUP BY s.id
+-- HAVING AVG(b.total_cents) > 255000
+-- ORDER BY booking_value DESC;
+
+SELECT c.id, c.name, COUNT(b.id) AS bookings
+FROM customers c
+LEFT JOIN bookings b ON b.customer_id = c.id
 GROUP BY c.id
-HAVING COUNT(*) > 120
-ORDER BY bookings DESC;
+HAVING COUNT(b.id) < 95
+ORDER BY bookings ASC;
