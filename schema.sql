@@ -1,0 +1,1 @@
+TRUNCATE payments, bookings, suppliers, customers;
