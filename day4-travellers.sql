@@ -31,4 +31,4 @@
 -- ORDER BY travellers;
 
 -- Break the rules: add an existing traveller to the same booking again, then add a traveller who doesn't exist.
-INSERT INTO booking_travellers (booking_id, traveller_id) VALUES (2, 741)
+-- INSERT INTO booking_travellers (booking_id, traveller_id) VALUES (2, 741);
